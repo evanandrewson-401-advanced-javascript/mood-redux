@@ -4,12 +4,17 @@ import PropTypes from 'prop-types';
 const Timer = ({ count, dispatch }) => {
 
   useEffect(() => {
-    setInterval(() => {
+    const counter = setInterval(() => {
       dispatch({ type: 'DECREMENT_COUNTER' });
     }, 1000);
 
-    // return clearInterval(counter);
+    return () => clearInterval(counter);
   }, []);
+
+  if(count === 0) {
+    dispatch({ type: 'RESTART_STATE' });
+  }
+
   return (
     <h1>{count}</h1>
   );

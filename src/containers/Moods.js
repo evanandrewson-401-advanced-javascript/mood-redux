@@ -5,6 +5,7 @@ import Face from '../components/face/Face';
 import store from '../store';
 import PropTypes from 'prop-types';
 import Timer from '../components/controls/timer/timer';
+import StartButton from '../components/startButton/StartButton';
 
 const actions = [
   { name: 'DRINK_COFFEE', text: 'Drink Coffee', stateName: 'coffees' },
@@ -29,7 +30,7 @@ export const getFace = state => {
   return '😀';
 };
 
-const Moods = ({ dispatch, count }) => {
+const Moods = ({ dispatch, count, hasStarted }) => {
   const state = store.getState();
   const face = getFace(state);
   const controlActions = actions.map(action => ({
@@ -39,16 +40,20 @@ const Moods = ({ dispatch, count }) => {
 
   return (
     <>
-      <Controls actions={controlActions} dispatch={dispatch} />
-      <Face emoji={face} />
-      <Timer count={count} dispatch={dispatch} />
+      {!hasStarted && <StartButton dispatch={dispatch} />}
+      {hasStarted && <>
+        <Controls actions={controlActions} dispatch={dispatch} />
+        <Face emoji={face} />
+        <Timer count={count} dispatch={dispatch} />
+      </>}
     </>
   );
 };
 
 Moods.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  count: PropTypes.number.isRequired
+  count: PropTypes.number.isRequired,
+  hasStarted: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -56,7 +61,8 @@ const mapStateToProps = state => ({
   snacks: state.snacks,
   naps: state.naps,
   studies: state.studies,
-  count: state.count
+  count: state.count,
+  hasStarted: state.hasStarted
 });
 
 const MoodsContainer = connect(
