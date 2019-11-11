@@ -4,7 +4,8 @@ const initialState = {
   coffees: 0,
   snacks: 0,
   naps: 0,
-  studies: 0
+  studies: 0,
+  count: 30
 };
 
 const reducer = (state = initialState, action) => {
@@ -17,6 +18,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, naps: state.naps + 1 };
     case 'STUDY':
       return { ...state, studies: state.studies + 1 };
+    case 'DECREMENT_COUNTER':
+      return {...state, count: state.count - 1 };
     default:
       return state;
   }
