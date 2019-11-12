@@ -2,18 +2,18 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from './timer.css';
 
-const Timer = ({ count, dispatch }) => {
+const Timer = ({ count, decrementCounter, restartState }) => {
 
   useEffect(() => {
     const counter = setInterval(() => {
-      dispatch({ type: 'DECREMENT_COUNTER' });
+      decrementCounter();
     }, 1000);
 
     return () => clearInterval(counter);
   }, []);
 
   if(count === 0) {
-    dispatch({ type: 'RESTART_STATE' });
+    restartState();
   }
 
   return (
@@ -23,7 +23,8 @@ const Timer = ({ count, dispatch }) => {
 
 Timer.propTypes = {
   count: PropTypes.number.isRequired,
-  dispatch: PropTypes.func.isRequired
+  decrementCounter: PropTypes.func.isRequired,
+  restartState: PropTypes.func.isRequired
 };
 
 export default Timer;

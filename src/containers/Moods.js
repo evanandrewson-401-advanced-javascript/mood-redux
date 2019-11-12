@@ -30,7 +30,7 @@ export const getFace = state => {
   return '😀';
 };
 
-const Moods = ({ dispatch, count, hasStarted }) => {
+const Moods = ({ handleSelection, count, hasStarted, toggleStart, decrementCounter, restartState }) => {
   const state = store.getState();
   const face = getFace(state);
   const controlActions = actions.map(action => ({
@@ -40,20 +40,23 @@ const Moods = ({ dispatch, count, hasStarted }) => {
 
   return (
     <>
-      {!hasStarted && <StartButton dispatch={dispatch} />}
+      {!hasStarted && <StartButton toggleStart={toggleStart} />}
       {hasStarted && <>
-        <Controls actions={controlActions} dispatch={dispatch} />
+        <Controls actions={controlActions} handleSelection={handleSelection} />
         <Face emoji={face} />
-        <Timer count={count} dispatch={dispatch} />
+        <Timer count={count} decrementCounter={decrementCounter} restartState={restartState} />
       </>}
     </>
   );
 };
 
 Moods.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  handleSelection: PropTypes.func.isRequired,
   count: PropTypes.number.isRequired,
-  hasStarted: PropTypes.bool.isRequired
+  hasStarted: PropTypes.bool.isRequired,
+  toggleStart: PropTypes.func.isRequired,
+  decrementCounter: PropTypes.func.isRequired,
+  restartState: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -65,8 +68,24 @@ const mapStateToProps = state => ({
   hasStarted: state.hasStarted
 });
 
+const mapDispatchToProps = dispatch => ({
+  handleSelection(name) {
+    dispatch({ type: name });
+  },
+  toggleStart() {
+    dispatch({ type: 'TOGGLE_START' });
+  },
+  decrementCounter() {
+    dispatch({ type: 'DECREMENT_COUNTER' });
+  },
+  restartState() {
+    dispatch({ type: 'RESTART_STATE' });
+  }
+});
+
 const MoodsContainer = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Moods);
 
 export default MoodsContainer;
