@@ -4,7 +4,7 @@ import Controls from '../components/controls/Controls';
 import Face from '../components/face/Face';
 import store from '../store';
 import PropTypes from 'prop-types';
-import Timer from '../components/controls/timer/timer';
+import Timer from '../components/timer/timer';
 import StartButton from '../components/startButton/StartButton';
 
 const actions = [

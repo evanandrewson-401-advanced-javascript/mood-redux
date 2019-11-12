@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import styles from './timer.css';
 
 const Timer = ({ count, dispatch }) => {
 
@@ -16,7 +17,7 @@ const Timer = ({ count, dispatch }) => {
   }
 
   return (
-    <h1>{count}</h1>
+    <h1 className={styles.Timer}>{count}</h1>
   );
 };
 
