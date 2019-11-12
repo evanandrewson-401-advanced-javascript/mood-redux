@@ -1,0 +1,21 @@
+.StartButton {
+    width: 50vw;
+    height: 25vh;
+    font-size: 5em;
+    position: fixed;
+    top: 37.5vh;
+    right: 25vw;
+    border-radius: 10px;
+
+    &:hover {
+        transform: rotate(360deg);
+        animation-name: button-animation;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+    }
+
+    @keyframes button-animation {
+        to {background-color: black; color: white};
+    }
+
+}
