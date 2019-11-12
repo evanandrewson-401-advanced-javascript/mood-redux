@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './StartButton.css';
 
 const StartButton = ({ dispatch }) => {
-  return <button onClick={() => dispatch({ type: 'TOGGLE_START' })} >Start game</button>;
+  return <button className={styles.StartButton} onClick={() => dispatch({ type: 'TOGGLE_START' })} >Start game</button>;
 };
 
 StartButton.propTypes = {
