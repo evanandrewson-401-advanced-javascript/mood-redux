@@ -5,8 +5,14 @@ const initialState = {
   snacks: 0,
   naps: 0,
   studies: 0,
-  count: 30,
-  hasStarted: false
+  timerCount: 30,
+  hasStarted: false,
+  actions: [
+    { name: 'DRINK_COFFEE', text: 'Drink Coffee', stateName: 'coffees' },
+    { name: 'EAT_SNACK', text: 'Snack', stateName: 'snacks' },
+    { name: 'TAKE_NAP', text: 'Nap', stateName: 'naps' },
+    { name: 'STUDY', text: 'Study', stateName: 'studies' },
+  ]
 };
 
 const reducer = (state = initialState, action) => {
@@ -20,7 +26,7 @@ const reducer = (state = initialState, action) => {
     case 'STUDY':
       return { ...state, studies: state.studies + 1 };
     case 'DECREMENT_COUNTER':
-      return { ...state, count: state.count - 1 };
+      return { ...state, timerCount: state.timerCount - 1 };
     case 'TOGGLE_START':
       return { ...state, hasStarted: !state.hasStarted };
     case 'RESTART_STATE':

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from './timer.css';
 
-const Timer = ({ count, decrementCounter, restartState }) => {
+const Timer = ({ timerCount, decrementCounter, restartState }) => {
 
   useEffect(() => {
     const counter = setInterval(() => {
@@ -12,17 +12,17 @@ const Timer = ({ count, decrementCounter, restartState }) => {
     return () => clearInterval(counter);
   }, []);
 
-  if(count === 0) {
+  if(timerCount === 0) {
     restartState();
   }
 
   return (
-    <h1 className={styles.Timer}>{count}</h1>
+    <h1 className={styles.Timer}>{timerCount}</h1>
   );
 };
 
 Timer.propTypes = {
-  count: PropTypes.number.isRequired,
+  timerCount: PropTypes.number.isRequired,
   decrementCounter: PropTypes.func.isRequired,
   restartState: PropTypes.func.isRequired
 };
