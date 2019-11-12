@@ -6,6 +6,10 @@ import store from '../store';
 import PropTypes from 'prop-types';
 import Timer from '../components/timer/timer';
 import StartButton from '../components/startButton/StartButton';
+import { handleSelectionAction } from '../actions/handleSelectionAction';
+import { toggleStartAction } from '../actions/toggleStartAction';
+import { decrementCounterAction } from '../actions/decrementCounterAction';
+import { restartStateAction } from '../actions/restartStateAction';
 
 const actions = [
   { name: 'DRINK_COFFEE', text: 'Drink Coffee', stateName: 'coffees' },
@@ -30,7 +34,7 @@ export const getFace = state => {
   return '😀';
 };
 
-const Moods = ({ handleSelection, count, hasStarted, toggleStart, decrementCounter, restartState }) => {
+const Moods = ({ handleSelection, time, hasStarted, toggleStart, decrementCounter, restartState }) => {
   const state = store.getState();
   const face = getFace(state);
   const controlActions = actions.map(action => ({
@@ -44,7 +48,7 @@ const Moods = ({ handleSelection, count, hasStarted, toggleStart, decrementCount
       {hasStarted && <>
         <Controls actions={controlActions} handleSelection={handleSelection} />
         <Face emoji={face} />
-        <Timer count={count} decrementCounter={decrementCounter} restartState={restartState} />
+        <Timer count={time} decrementCounter={decrementCounter} restartState={restartState} />
       </>}
     </>
   );
@@ -52,7 +56,7 @@ const Moods = ({ handleSelection, count, hasStarted, toggleStart, decrementCount
 
 Moods.propTypes = {
   handleSelection: PropTypes.func.isRequired,
-  count: PropTypes.number.isRequired,
+  time: PropTypes.number.isRequired,
   hasStarted: PropTypes.bool.isRequired,
   toggleStart: PropTypes.func.isRequired,
   decrementCounter: PropTypes.func.isRequired,
@@ -64,22 +68,22 @@ const mapStateToProps = state => ({
   snacks: state.snacks,
   naps: state.naps,
   studies: state.studies,
-  count: state.count,
+  time: state.count,
   hasStarted: state.hasStarted
 });
 
 const mapDispatchToProps = dispatch => ({
   handleSelection(name) {
-    dispatch({ type: name });
+    dispatch(handleSelectionAction(name));
   },
   toggleStart() {
-    dispatch({ type: 'TOGGLE_START' });
+    dispatch(toggleStartAction());
   },
   decrementCounter() {
-    dispatch({ type: 'DECREMENT_COUNTER' });
+    dispatch(decrementCounterAction());
   },
   restartState() {
-    dispatch({ type: 'RESTART_STATE' });
+    dispatch(restartStateAction());
   }
 });
 
