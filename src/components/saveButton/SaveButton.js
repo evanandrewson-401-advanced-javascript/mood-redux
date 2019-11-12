@@ -5,7 +5,7 @@ const SaveButton = ({ save }) => {
   return <button onClick={save}>Save</button>;
 };
 
-SaveButton.PropTypes = {
+SaveButton.propTypes = {
   save: PropTypes.func.isRequired
 };
 
