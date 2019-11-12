@@ -14,6 +14,7 @@ import { getTimerCount } from '../selectors/getTimerCount';
 import { getHasStarted } from '../selectors/getHasStarted';
 import { getFace } from '../selectors/getFace';
 import { getActions } from '../selectors/getActions';
+import ResetButton from '../components/resetButton/ResetButton';
 
 const Moods = ({ actions, face, handleSelection, timerCount, hasStarted, toggleStart, decrementCounter, restartState }) => {
   return (
@@ -21,6 +22,7 @@ const Moods = ({ actions, face, handleSelection, timerCount, hasStarted, toggleS
       {!hasStarted && <StartButton toggleStart={toggleStart} />}
       {hasStarted && <>
         <Controls actions={actions} handleSelection={handleSelection} />
+        <ResetButton reset={restartState} />
         <Face emoji={face} />
         <Timer timerCount={timerCount} decrementCounter={decrementCounter} restartState={restartState} />
       </>}
