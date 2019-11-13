@@ -7,7 +7,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch(action.type) {
     case SAVE_GAME:
-      return { ...state, savedGames: state.savedGames.push(action.payload) };
+      return { ...state, savedGames: [...state.savedGames, action.payload] };
     default:
       return state;
   }

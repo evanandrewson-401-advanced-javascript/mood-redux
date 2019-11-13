@@ -16,8 +16,11 @@ import { getFace } from '../selectors/getFace';
 import { getActions } from '../selectors/getActions';
 import ResetButton from '../components/resetButton/ResetButton';
 import Sidebar from '../components/Sidebar/Sidebar';
+import { getSavedGames } from '../selectors/getSavedGames';
+import SaveButton from '../components/saveButton/SaveButton';
+import { saveGameAction } from '../actions/saveGameAction';
 
-const Moods = ({ savedGames, actions, face, handleSelection, timerCount, hasStarted, toggleStart, decrementCounter, restartState }) => {
+const Moods = ({ coffees, snacks, studies, naps, save, savedGames, actions, face, handleSelection, timerCount, hasStarted, toggleStart, decrementCounter, restartState }) => {
   return (
     <>
       {!hasStarted && <StartButton toggleStart={toggleStart} />}
@@ -25,6 +28,7 @@ const Moods = ({ savedGames, actions, face, handleSelection, timerCount, hasStar
         <Sidebar savedGames={savedGames} />
         <Controls actions={actions} handleSelection={handleSelection} />
         <ResetButton reset={restartState} />
+        <SaveButton save={() => save({ game: { face, coffees, snacks, studies, naps } })} />
         <Face emoji={face} />
         <Timer timerCount={timerCount} decrementCounter={decrementCounter} restartState={restartState} />
       </>}
@@ -33,11 +37,13 @@ const Moods = ({ savedGames, actions, face, handleSelection, timerCount, hasStar
 };
 
 Moods.propTypes = {
+  save: PropTypes.func.isRequired,
   savedGames: PropTypes.arrayOf(PropTypes.shape({
     face: PropTypes.string.isRequired,
     coffees: PropTypes.string.isRequired,
     snacks: PropTypes.string.isRequired,
     studies: PropTypes.string.isRequired,
+    naps: PropTypes.string.isRequired
   })), 
   actions: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
@@ -51,7 +57,11 @@ Moods.propTypes = {
   hasStarted: PropTypes.bool.isRequired,
   toggleStart: PropTypes.func.isRequired,
   decrementCounter: PropTypes.func.isRequired,
-  restartState: PropTypes.func.isRequired
+  restartState: PropTypes.func.isRequired,
+  naps: PropTypes.number.isRequired,
+  coffees: PropTypes.number.isRequired,
+  snacks: PropTypes.number.isRequired,
+  studies: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -78,6 +88,9 @@ const mapDispatchToProps = dispatch => ({
   },
   restartState() {
     dispatch(restartStateAction());
+  },
+  save(game) {
+    dispatch(saveGameAction(game));
   }
 });
 

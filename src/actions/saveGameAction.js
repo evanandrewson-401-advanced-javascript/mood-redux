@@ -5,7 +5,7 @@ export const saveGameAction = state => {
   return ({
     type: SAVE_GAME,
     payload: {
-      face: getFace(state.game),
+      face: getFace(state),
       coffees: state.game.coffees,
       snacks: state.game.snacks,
       naps: state.game.naps,

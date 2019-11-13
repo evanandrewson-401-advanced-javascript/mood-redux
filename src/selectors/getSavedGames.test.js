@@ -1,4 +1,4 @@
-import { getSavedGames } from "./getSavedGames";
+import { getSavedGames } from './getSavedGames';
 
 describe('get saved games', () => {
   const state = {
