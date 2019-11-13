@@ -2,7 +2,9 @@ import { getHasStarted } from './getHasStarted';
 
 describe('get hasStarted', () => {
   const state = {
-    hasStarted: false
+    game: {
+      hasStarted: false
+    }
   };
 
   it('gets hasStarted', () => {

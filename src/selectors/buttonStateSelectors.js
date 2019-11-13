@@ -1,4 +1,4 @@
-export const getCoffees = state => state.coffees;
-export const getSnacks = state => state.snacks;
-export const getNaps = state => state.naps;
-export const getStudies = state => state.studies;
+export const getCoffees = state => state.game.coffees;
+export const getSnacks = state => state.game.snacks;
+export const getNaps = state => state.game.naps;
+export const getStudies = state => state.game.studies;

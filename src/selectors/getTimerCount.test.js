@@ -2,7 +2,9 @@ import { getTimerCount } from './getTimerCount';
 
 describe('get timer count', () => {
   const state = {
-    timerCount: 30
+    game: {
+      timerCount: 30
+    }
   };
 
   it('gets timer count', () => {

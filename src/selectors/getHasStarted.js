@@ -1,1 +1,1 @@
-export const getHasStarted = state => state.hasStarted;
+export const getHasStarted = state => state.game.hasStarted;

@@ -1,8 +1,8 @@
 export const getActions = state => {
-  return state.actions.map(action => {
+  return state.game.actions.map(action => {
     return {
       ...action,
-      count: state[action.stateName]
+      count: state.game[action.stateName]
     };
   });
 };

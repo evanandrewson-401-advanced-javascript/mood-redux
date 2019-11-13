@@ -2,10 +2,12 @@ import { getCoffees, getSnacks, getNaps, getStudies } from './buttonStateSelecto
 
 describe('button state selectors', () => {
   const state = {
-    coffees: 0,
-    snacks: 0,
-    naps: 0,
-    studies: 0
+    game: {
+      coffees: 0,
+      snacks: 0,
+      naps: 0,
+      studies: 0
+    }
   };
 
   it('gets coffees', () => {

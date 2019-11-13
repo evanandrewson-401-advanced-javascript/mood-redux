@@ -1,1 +1,1 @@
-export const getTimerCount = state => state.timerCount;
+export const getTimerCount = state => state.game.timerCount;

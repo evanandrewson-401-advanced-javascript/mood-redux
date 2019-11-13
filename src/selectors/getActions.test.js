@@ -2,16 +2,18 @@ import { getActions } from './getActions';
 
 describe('get actions', () => {
   const state = {
-    actions: [
-      { name: 'DRINK_COFFEE', text: 'Drink Coffee', stateName: 'coffees' },
-      { name: 'EAT_SNACK', text: 'Snack', stateName: 'snacks' },
-      { name: 'TAKE_NAP', text: 'Nap', stateName: 'naps' },
-      { name: 'STUDY', text: 'Study', stateName: 'studies' },
-    ],
-    coffees: 0,
-    snacks: 0,
-    naps: 0,
-    studies: 0,
+    game: {
+      actions: [
+        { name: 'DRINK_COFFEE', text: 'Drink Coffee', stateName: 'coffees' },
+        { name: 'EAT_SNACK', text: 'Snack', stateName: 'snacks' },
+        { name: 'TAKE_NAP', text: 'Nap', stateName: 'naps' },
+        { name: 'STUDY', text: 'Study', stateName: 'studies' },
+      ],
+      coffees: 0,
+      snacks: 0,
+      naps: 0,
+      studies: 0,
+    }
   };
 
   it('returns an array of actions with count', () => {
