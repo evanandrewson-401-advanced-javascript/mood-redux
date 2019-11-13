@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Controls.css';
 
-const Controls = ({ actions, dispatch }) => (
+const Controls = ({ actions, handleSelection }) => (
   <section className={styles.Controls}>
     {actions.map(({ name, text, count }) => (
-      <button key={name} onClick={() => dispatch({ type: name })}>
+      <button key={name} onClick={() => handleSelection(name)}>
         {text || name} {!!count && `- ${count}`}
       </button>
     ))}
@@ -17,7 +17,7 @@ Controls.propTypes = {
     name: PropTypes.string.isRequired,
     text: PropTypes.string
   })).isRequired,
-  dispatch: PropTypes.func.isRequired
+  handleSelection: PropTypes.func.isRequired
 };
 
 export default Controls;
