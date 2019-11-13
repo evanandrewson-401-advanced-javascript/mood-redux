@@ -15,12 +15,14 @@ import { getHasStarted } from '../selectors/getHasStarted';
 import { getFace } from '../selectors/getFace';
 import { getActions } from '../selectors/getActions';
 import ResetButton from '../components/resetButton/ResetButton';
+import Sidebar from '../components/Sidebar/Sidebar';
 
-const Moods = ({ actions, face, handleSelection, timerCount, hasStarted, toggleStart, decrementCounter, restartState }) => {
+const Moods = ({ savedGames, actions, face, handleSelection, timerCount, hasStarted, toggleStart, decrementCounter, restartState }) => {
   return (
     <>
       {!hasStarted && <StartButton toggleStart={toggleStart} />}
       {hasStarted && <>
+        <Sidebar savedGames={savedGames} />
         <Controls actions={actions} handleSelection={handleSelection} />
         <ResetButton reset={restartState} />
         <Face emoji={face} />
@@ -31,6 +33,12 @@ const Moods = ({ actions, face, handleSelection, timerCount, hasStarted, toggleS
 };
 
 Moods.propTypes = {
+  savedGames: PropTypes.arrayOf(PropTypes.shape({
+    face: PropTypes.string.isRequired,
+    coffees: PropTypes.string.isRequired,
+    snacks: PropTypes.string.isRequired,
+    studies: PropTypes.string.isRequired,
+  })), 
   actions: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
@@ -54,7 +62,8 @@ const mapStateToProps = state => ({
   naps: getNaps(state),
   studies: getStudies(state),
   timerCount: getTimerCount(state),
-  hasStarted: getHasStarted(state)
+  hasStarted: getHasStarted(state),
+  savedGames: getSavedGames(state),
 });
 
 const mapDispatchToProps = dispatch => ({

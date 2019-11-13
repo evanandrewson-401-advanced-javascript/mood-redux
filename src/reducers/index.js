@@ -1,4 +1,4 @@
-import { combineReducers } from 'react-redux';
+import { combineReducers } from 'redux';
 import game from './gameReducer';
 import history from './historyReducer';
 
