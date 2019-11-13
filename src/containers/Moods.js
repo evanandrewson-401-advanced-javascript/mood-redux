@@ -19,19 +19,23 @@ import Sidebar from '../components/Sidebar/Sidebar';
 import { getSavedGames } from '../selectors/getSavedGames';
 import SaveButton from '../components/saveButton/SaveButton';
 import { saveGameAction } from '../actions/saveGameAction';
+import styles from './Moods.css';
 
 const Moods = ({ coffees, snacks, studies, naps, save, savedGames, actions, face, handleSelection, timerCount, hasStarted, toggleStart, decrementCounter, restartState }) => {
   return (
     <>
       {!hasStarted && <StartButton toggleStart={toggleStart} />}
-      {hasStarted && <>
+      {hasStarted && 
+      <div className={styles.Moods}>
         <Sidebar savedGames={savedGames} />
-        <Controls actions={actions} handleSelection={handleSelection} />
-        <ResetButton reset={restartState} />
-        <SaveButton save={() => save({ game: { face, coffees, snacks, studies, naps } })} />
-        <Face emoji={face} />
-        <Timer timerCount={timerCount} decrementCounter={decrementCounter} restartState={restartState} />
-      </>}
+        <section className={styles.main}>
+          <Controls actions={actions} handleSelection={handleSelection} />
+          <ResetButton reset={restartState} />
+          <SaveButton save={() => save({ game: { face, coffees, snacks, studies, naps } })} />
+          <Face emoji={face} />
+          <Timer timerCount={timerCount} decrementCounter={decrementCounter} restartState={restartState} />
+        </section>
+      </div>}
     </>
   );
 };

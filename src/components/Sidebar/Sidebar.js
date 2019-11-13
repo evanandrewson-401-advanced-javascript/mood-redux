@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SavedGame from '../SavedGame/SavedGame';
+import styles from './Sidebar.css';
 
 const Sidebar = ({ savedGames }) => {
   const elements = savedGames.map((game, index) => {
@@ -10,7 +11,7 @@ const Sidebar = ({ savedGames }) => {
   });
 
   return (
-    <aside>
+    <aside className={styles.Sidebar}>
       {elements}
     </aside>
   );

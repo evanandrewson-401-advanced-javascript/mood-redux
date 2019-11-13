@@ -1,0 +1,14 @@
+.SaveButton {
+    text-align: center;
+    margin-top: .4rem;
+
+    button {
+        width: 47.61px;
+        align-items: center;
+        padding: 0.4rem;
+        margin: 0, 0.4rem;
+        border: none;
+        background-color: #0198E1;
+        color: #FFFFFF;
+    }
+}

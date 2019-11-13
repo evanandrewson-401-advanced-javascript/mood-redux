@@ -1,0 +1,7 @@
+.Moods {
+    display: flex;
+
+    .main {
+        width: 80vw;
+    }
+}

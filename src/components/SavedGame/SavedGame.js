@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './SavedGame.css';
 
 const SavedGame = ({ face, coffees, snacks, naps, studies }) => {
   return (
-    <section>
+    <section className={styles.SavedGame}>
       <div>
         <p>Coffees: {coffees}</p>
         <p>Snacks: {snacks}</p>
         <p>Naps: {naps}</p>
         <p>Studies: {studies}</p>
       </div>
-      <p>{face}</p>
+      <p className={styles.face}>{face}</p>
     </section>
   );
 };
